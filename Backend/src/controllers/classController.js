@@ -1,9 +1,9 @@
 import { pool } from "../../config/db.js";
 
 // STUDENTS
-export const getAllStudents = async (req, res) => {
+export const getAllClasses = async (req, res) => {
     try {
-        const result = await pool.query("SELECT * FROM STUDENTS");
+        const result = await pool.query("SELECT * FROM CLASSES");
 
         res.status(201).json(result.rows);
     } catch (error) {
@@ -12,9 +12,9 @@ export const getAllStudents = async (req, res) => {
     }
 };
 
-export const getStudentCount = async (req, res) => {
+export const getClassCount = async (req, res) => {
     try {
-        const result = await pool.query("SELECT count(*) FROM STUDENTS");
+        const result = await pool.query("SELECT count(*) FROM CLASSES");
 
         res.status(201).json(result.rows);
     } catch (error) {
