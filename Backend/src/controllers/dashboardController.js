@@ -38,3 +38,16 @@ export const get_total_enrollments = async (req , res) =>{
         res.status(500).json({error:"Server Error "})
     }
 }
+
+//  Total Fees
+
+export const get_total_fees = async (req , res) =>{
+    try {
+        const result = await pool.query("SELECT sum(total_amount) AS total_fees FROM fees where fee_type = 'Monthly Tuition' ")
+        res.status(201).json(result.rows)
+
+    }catch (error){
+        console.error(error)
+        res.status(500).json({error:"Server Error "})
+    }
+}
