@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 const Dashboard = () => {
     return (
-        <div className="w-screen h-screen bg-yellow-100">
+        <div className="w-screen h-screen bg-blue-50 ">
             <NavBar />
             <HomePage />
         </div>

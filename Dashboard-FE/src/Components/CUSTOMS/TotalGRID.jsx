@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { getStudentCount } from "../../API/Students.js";
 import { getEmployeeCount } from "../../API/Employees.js";
-import { getClassCount } from "../../API/Classes.js";
+import { getEnrollmentCount } from "../../API/Enrollment.js";
+import { getFeeDetails } from "../../API/Fees.js";
 import CARD from "./CARD";
 
 const TotalGRID = () => {
     const [totalObject, setTotalObject] = useState({
         Students: 0,
         Employee: 0,
+        Enrollment: 0,
         Classes: 0,
-        Fee: 0,
+        Fee: {},
         UnpaidDues: 0,
     });
     useEffect(() => {
@@ -17,8 +19,15 @@ const TotalGRID = () => {
             try {
                 const Students = await getStudentCount();
                 const Employee = await getEmployeeCount();
-                const Classes = await getClassCount();
-                setTotalObject((a) => ({ ...a, Students, Employee, Classes }));
+                const Enrollment = await getEnrollmentCount();
+                const Fee = await getFeeDetails();
+                setTotalObject((a) => ({
+                    ...a,
+                    Students,
+                    Employee,
+                    Enrollment,
+                    Fee: Fee[0],
+                }));
             } catch (err) {
                 console.error(err);
             }
@@ -26,7 +35,7 @@ const TotalGRID = () => {
         fetchData();
     }, []);
     return (
-        <div className="cardContainer flex gap-3  w-screen p-5">
+        <div className="cardContainer grid grid-cols-5 h-fit gap-3 p-2 mx-2">
             <CARD
                 totalName={"Total Students"}
                 totalCount={totalObject.Students}
@@ -36,8 +45,29 @@ const TotalGRID = () => {
                 totalCount={totalObject.Employee}
             />
             <CARD
-                totalName={"Total Classes"}
-                totalCount={totalObject.Classes}
+                totalName={"Total Enrollment"}
+                totalCount={totalObject.Enrollment}
+            />
+            <CARD
+                totalName={"Unpaid Dues"}
+                totalCount={
+                    new Intl.NumberFormat("en-PK", {
+                        style: "currency",
+                        currency: "PKR",
+                        maximumSignificantDigits: 3,
+                    }).format(totalObject.Fee.total_unpaid_fees) + " PKR"
+                }
+            />
+
+            <CARD
+                totalName={"Fee Collected"}
+                totalCount={
+                    new Intl.NumberFormat("en-PK", {
+                        style: "currency",
+                        currency: "PKR",
+                        maximumSignificantDigits: 5,
+                    }).format(totalObject.Fee.total_paid_fees) + " PKR"
+                }
             />
         </div>
     );
