@@ -1,10 +1,10 @@
 import {pool} from "../../config/db.js";
 // ToTal Students 
 
-export const get_total_students = async (req , res ) =>{
+export const get_student_details = async (req , res ) =>{
   
     try{
-        const result = await pool.query("SELECT COUNT(*) FROM students");
+        const result = await pool.query("SELECT * FROM student_details");
 
         res.status(201).json(result.rows)
     } catch (error) {
@@ -15,9 +15,9 @@ export const get_total_students = async (req , res ) =>{
 }
 //  Total Employees 
 
-export const get_total_employees = async (req , res) =>{
+export const get_employees_details = async (req , res) =>{
     try {
-        const result = await pool.query("SELECT COUNT(*) FROM employees ")
+        const result = await pool.query("select * from employees_details_view")
         res.status(201).json(result.rows)
 
     }catch (error){
