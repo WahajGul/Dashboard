@@ -41,9 +41,9 @@ export const get_total_enrollments = async (req , res) =>{
 
 //  Total Fees
 
-export const get_total_fees = async (req , res) =>{
+export const get_fee_details = async (req , res) =>{
     try {
-        const result = await pool.query("SELECT sum(total_amount) AS total_fees FROM fees where fee_type = 'Monthly Tuition' ")
+        const result = await pool.query("select * from fee_details")
         res.status(201).json(result.rows)
 
     }catch (error){
