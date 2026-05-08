@@ -51,3 +51,14 @@ export const get_fee_details = async (req , res) =>{
         res.status(500).json({error:"Server Error "})
     }
 }
+
+//  Last Year Revenue
+export const get_last_year_revenue = async (req , res) =>{
+    try {
+        const result = await pool.query("SELECT * from monthly_revenue_last_year")
+        res.status(201).json(result.rows)
+    }catch (error){
+        console.error(error)
+        res.status(500).json({error:"Server Error "})
+    }
+}
