@@ -1,9 +1,14 @@
+import { NavLink } from "react-router-dom";
+
 const LINK = ({ className = "", ...props }) => {
+    const c = ` hover:before:w-full  before:duration-200 before:transition-all before:h-1 before:bottom-0 before:bg-blue-500 relative before:absolute ${className}`;
     return (
-        <a
-            className={`before:w-0  hover:before:w-full active:w-full before:duration-200 before:transition-all before:h-1 before:bottom-0 before:bg-blue-500 relative before:absolute ${className}`}
+        <NavLink
+            className={({ isActive }) =>
+                isActive ? `${c} before:w-full` : `${c} before:w-0 `
+            }
             {...props}
-        ></a>
+        ></NavLink>
     );
 };
 

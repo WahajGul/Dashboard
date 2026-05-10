@@ -1,13 +1,18 @@
-import { useState } from "react";
 import "./App.css";
 import Dashboard from "./Components/Dashboard";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./Components/HomePage";
+import Students from "./Components/Students";
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
         <div className="w-screen">
-            <Dashboard />
+            <Routes>
+                <Route path="/" element={<Dashboard />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="Students" element={<Students />} />
+                </Route>
+            </Routes>
         </div>
     );
 }
