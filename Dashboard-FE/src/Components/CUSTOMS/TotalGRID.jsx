@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getStudentCount } from "../../API/Students.js";
-import { getEmployeeCount } from "../../API/Employees.js";
+import { getStudentDetails } from "../../API/Students.js";
+import { getEmployeeDetails } from "../../API/Employees.js";
 import { getEnrollmentCount } from "../../API/Enrollment.js";
 import { getFeeDetails } from "../../API/Fees.js";
 import CARD from "./CARD";
@@ -17,14 +17,14 @@ const TotalGRID = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const Students = await getStudentCount();
-                const Employee = await getEmployeeCount();
+                const Students = await getStudentDetails();
+                const Employee = await getEmployeeDetails();
                 const Enrollment = await getEnrollmentCount();
                 const Fee = await getFeeDetails();
                 setTotalObject((a) => ({
                     ...a,
-                    Students,
-                    Employee,
+                    Students: Students[0].total_students,
+                    Employee: Employee[0].total_employees,
                     Enrollment,
                     Fee: Fee[0],
                 }));
