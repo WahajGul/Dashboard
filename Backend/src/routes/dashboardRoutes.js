@@ -1,19 +1,26 @@
-import express from "express"
+import express from "express";
+
 import {
-     get_student_details ,
-     get_employees_details,
-     get_total_enrollments , 
-     get_fee_details,
-     get_last_year_revenue,
-     get_admission_per_month } from "../controllers/dashboardController"
+  getStudentDetails,
+  getEmployeesDetails,
+  getTotalEnrollments,
+  getFeeDetails,
+  getLastYearRevenue,
+  getAdmissionPerMonth,
+} from "../controllers/dashboardController.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/get_student_details",get_student_details)
-router.get("/employees_details",get_employees_details)
-router.get("/total_enrollments",get_total_enrollments)
-router.get("/fee_details",get_fee_details)
-router.get("/last_year_revenue",get_last_year_revenue)
-router.get("/admission_per_month",get_admission_per_month)
+router.get("/students", getStudentDetails);
 
-export {router}; 
+router.get("/employees", getEmployeesDetails);
+
+router.get("/enrollments", getTotalEnrollments);
+
+router.get("/fees", getFeeDetails);
+
+router.get("/revenue_last-year", getLastYearRevenue);
+
+router.get("/admissions_monthly", getAdmissionPerMonth);
+
+export default router;

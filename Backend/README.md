@@ -154,7 +154,21 @@ http://localhost:5000/api/users
 ### Browser (GET only)
 
 ```
-http://localhost:5000/api/users
+
+
+GET /api/dashboard/students
+
+GET /api/dashboard/employees
+
+GET /api/dashboard/enrollments
+
+GET /api/dashboard/fees
+
+GET /api/dashboard/revenue_last-year
+
+GET /api/dashboard/admissions_monthly
+
+
 ```
 
 ---

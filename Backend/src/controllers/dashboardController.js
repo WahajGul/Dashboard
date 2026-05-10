@@ -1,75 +1,109 @@
-import {pool} from "../../config/db.js";
-// ToTal Students 
+import { pool } from "../../config/db.js";
 
-export const get_student_details = async (req , res ) =>{
-  
-    try{
-        const result = await pool.query("SELECT * FROM student_details");
+// Students
+export const getStudentDetails = async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM student_details"
+    );
 
-        res.status(201).json(result.rows)
-    } catch (error) {
-        console.error(error);
-        res.staus(500).json({error:"Server Error"})
-    } 
+    res.status(200).json(result.rows);
 
-}
-//  Total Employees 
+  } catch (error) {
+    console.error(error.message);
 
-export const get_employees_details = async (req , res) =>{
-    try {
-        const result = await pool.query("select * from employees_details_view")
-        res.status(201).json(result.rows)
+    res.status(500).json({
+      error: "Server Error",
+    });
+  }
+};
 
-    }catch (error){
-        console.error(error)
-        res.status(500).json({error:"Server Error "})
-    }
-}
+// Employees
+export const getEmployeesDetails = async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM employees_details_view"
+    );
 
-//  Total Enrollments
+    res.status(200).json(result.rows);
 
-export const get_total_enrollments = async (req , res) =>{
-    try {
-        const result = await pool.query("SELECT COUNT(*) FROM enrollments ")
-        res.status(201).json(result.rows)
+  } catch (error) {
+    console.error(error.message);
 
-    }catch (error){
-        console.error(error)
-        res.status(500).json({error:"Server Error "})
-    }
-}
+    res.status(500).json({
+      error: "Server Error",
+    });
+  }
+};
 
-//  Total Fees
+// Enrollments
+export const getTotalEnrollments = async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT COUNT(*) FROM enrollments"
+    );
 
-export const get_fee_details = async (req , res) =>{
-    try {
-        const result = await pool.query("select * from fee_details")
-        res.status(201).json(result.rows)
+    res.status(200).json(result.rows);
 
-    }catch (error){
-        console.error(error)
-        res.status(500).json({error:"Server Error "})
-    }
-}
+  } catch (error) {
+    console.error(error.message);
 
-//  Last Year Revenue
-export const get_last_year_revenue = async (req , res) =>{
-    try {
-        const result = await pool.query("SELECT * from monthly_revenue_last_year")
-        res.status(201).json(result.rows)
-    }catch (error){
-        console.error(error)
-        res.status(500).json({error:"Server Error "})
-    }
-}
+    res.status(500).json({
+      error: "Server Error",
+    });
+  }
+};
 
-// Admission per month 
-export const get_admission_per_month = async (req , res) =>{
-    try {
-        const result = await pool.query("SELECT * from student_admission_per_month")
-        res.status(201).json(result.rows)
-    }catch (error){
-        console.error(error)
-        res.status(500).json({error:"Server Error "})
-    }
-}
+// Fees
+export const getFeeDetails = async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM fee_details"
+    );
+
+    res.status(200).json(result.rows);
+
+  } catch (error) {
+    console.error(error.message);
+
+    res.status(500).json({
+      error: "Server Error",
+    });
+  }
+};
+
+// Revenue
+export const getLastYearRevenue = async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM monthly_revenue_last_year"
+    );
+
+    res.status(200).json(result.rows);
+
+  } catch (error) {
+    console.error(error.message);
+
+    res.status(500).json({
+      error: "Server Error",
+    });
+  }
+};
+
+// Admissions
+export const getAdmissionPerMonth = async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM student_admission_per_month"
+    );
+
+    res.status(200).json(result.rows);
+
+  } catch (error) {
+    console.error(error.message);
+
+    res.status(500).json({
+      error: "Server Error",
+    });
+  }
+};
