@@ -62,3 +62,14 @@ export const get_last_year_revenue = async (req , res) =>{
         res.status(500).json({error:"Server Error "})
     }
 }
+
+// Admission per month 
+export const get_admission_per_month = async (req , res) =>{
+    try {
+        const result = await pool.query("SELECT * from student_admission_per_month")
+        res.status(201).json(result.rows)
+    }catch (error){
+        console.error(error)
+        res.status(500).json({error:"Server Error "})
+    }
+}

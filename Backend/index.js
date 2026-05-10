@@ -6,6 +6,7 @@ import { get_employees_details } from "./src/controllers/dashboardController.js"
 import { get_total_enrollments } from "./src/controllers/dashboardController.js";
 import { get_fee_details } from "./src/controllers/dashboardController.js";
 import { get_last_year_revenue } from "./src/controllers/dashboardController.js";
+import { get_admission_per_month } from "./src/controllers/dashboardController.js";
 import dotenv from "dotenv";
 const app = express();
 dotenv.config();
@@ -19,6 +20,7 @@ app.use("/employees_details",get_employees_details)
 app.use("/total_enrollments",get_total_enrollments)
 app.use("/fee_details",get_fee_details)
 app.use("/last_year_revenue",get_last_year_revenue)
+app.use("/admission_per_month",get_admission_per_month)
     
 app.listen(5000, () => {
     console.log("Server running on PORT ", process.env.PORT, "...");
