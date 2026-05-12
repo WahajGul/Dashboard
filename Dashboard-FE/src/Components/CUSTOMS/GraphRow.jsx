@@ -5,7 +5,6 @@ const GraphRow = () => {
     return (
         <div className="flex mx-4 p-4 w-screen ">
             <EmployeeHiredPerMonth />
-            <Reveneu />
         </div>
     );
 };

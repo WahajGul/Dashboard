@@ -4,9 +4,9 @@ import FirstRow from "./FirstRow";
 
 const HomePage = () => {
     return (
-        <div className="flex relative flex-col p-4 items-center  w-screen bg-blue-100">
+        <div className="flex relative flex-col p-4 items-center  w-screen bg-background">
             <Weather />
-            <h1 className=" text-blue-500 text-2xl drop-shadow-md drop-shadow-black font-extrabold bg-blue-100 p-5 rounded-2xl">
+            <h1 className=" text-primary text-2xl  font-extrabold  p-5 rounded-2xl">
                 HOME PAGE
             </h1>
             <FirstRow />

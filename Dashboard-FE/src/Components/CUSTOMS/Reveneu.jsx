@@ -52,7 +52,7 @@ const data = {
 
 const Reveneu = () => {
     return (
-        <div className="p-2 w-1/2 m-2 rounded-2xl bg-blue-100 drop-shadow-md drop-shadow-black">
+        <div className=" w-full drop-shadow-md drop-shadow-black rounded-md bg-background">
             <Line options={options} data={data} />
         </div>
     );

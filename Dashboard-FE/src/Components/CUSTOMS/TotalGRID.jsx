@@ -4,6 +4,8 @@ import { getEmployeeDetails } from "../../API/Employees.js";
 import { getEnrollmentCount } from "../../API/Enrollment.js";
 import { getFeeDetails } from "../../API/Fees.js";
 import CARD from "./CARD";
+import PIE from "./PIE.jsx";
+import Reveneu from "./Reveneu.jsx";
 
 const TotalGRID = () => {
     const [totalObject, setTotalObject] = useState({
@@ -35,40 +37,60 @@ const TotalGRID = () => {
         fetchData();
     }, []);
     return (
-        <div className="cardContainer grid grid-cols-5 h-fit gap-3 p-2 mx-2">
-            <CARD
-                totalName={"Total Students"}
-                totalCount={totalObject.Students}
-            />
-            <CARD
-                totalName={"Total Employee"}
-                totalCount={totalObject.Employee}
-            />
-            <CARD
-                totalName={"Total Enrollment"}
-                totalCount={totalObject.Enrollment}
-            />
-            <CARD
-                totalName={"Unpaid Dues"}
-                totalCount={
-                    new Intl.NumberFormat("en-PK", {
-                        style: "currency",
-                        currency: "PKR",
-                        maximumSignificantDigits: 3,
-                    }).format(totalObject.Fee.total_unpaid_fees) + " PKR"
-                }
-            />
+        <div className="totalGrid h-fit  *:m-2 flex border-2   justify-center ">
+            <div className="cardContainer grid grid-cols-3  gap-3 p-2 mx-2">
+                <CARD
+                    totalName={"Total Students"}
+                    totalCount={totalObject.Students}
+                />
+                <CARD
+                    totalName={"Total Employee"}
+                    totalCount={totalObject.Employee}
+                />
+                <CARD
+                    totalName={"Total Enrollment"}
+                    totalCount={totalObject.Enrollment}
+                />
+                <CARD
+                    totalName={"Unpaid Dues"}
+                    totalCount={
+                        new Intl.NumberFormat("en-PK", {
+                            style: "currency",
+                            currency: "PKR",
+                            maximumSignificantDigits: 3,
+                        }).format(totalObject.Fee.total_unpaid_fees) + " PKR"
+                    }
+                />
 
-            <CARD
-                totalName={"Fee Collected"}
-                totalCount={
-                    new Intl.NumberFormat("en-PK", {
-                        style: "currency",
-                        currency: "PKR",
-                        maximumSignificantDigits: 5,
-                    }).format(totalObject.Fee.total_paid_fees) + " PKR"
-                }
-            />
+                <CARD
+                    totalName={"Fee Collected"}
+                    totalCount={
+                        new Intl.NumberFormat("en-PK", {
+                            style: "currency",
+                            currency: "PKR",
+                            maximumSignificantDigits: 5,
+                        }).format(totalObject.Fee.total_paid_fees) + " PKR"
+                    }
+                />
+
+                <CARD
+                    totalName={"Fee Collected"}
+                    totalCount={
+                        new Intl.NumberFormat("en-PK", {
+                            style: "currency",
+                            currency: "PKR",
+                            maximumSignificantDigits: 5,
+                        }).format(totalObject.Fee.annual_charges_charges) +
+                        " PKR"
+                    }
+                />
+            </div>
+            <div className="pie flex justify-center ">
+                <PIE fee={totalObject.Fee} />
+            </div>
+            <div className="revContainer flex justify-center">
+                <Reveneu />
+            </div>
         </div>
     );
 };
