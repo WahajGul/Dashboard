@@ -21,7 +21,9 @@ ChartJS.register(
     Legend,
     Filler,
 );
-
+import { getRevenueDetails } from "../../API/REVENUE.js";
+import { useEffect, useState } from "react";
+import { isArray } from "chart.js/helpers";
 const options = {
     responsive: true,
     plugins: {
@@ -35,25 +37,39 @@ const options = {
     },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-const data = {
-    labels,
-    datasets: [
-        {
-            label: "Current Year",
-            data: [100000, 450000, 430000, 300000, 100000, 99000, 12000],
-            fill: true,
-            borderColor: "#097FC8",
-            backgroundColor: "#0B9BF4",
-        },
-    ],
-};
-
 const Reveneu = () => {
+    const [revenue, setRevenue] = useState();
+    useEffect(() => {
+        async function getData() {
+            const result = await getRevenueDetails();
+            const values = isArray(result)
+                ? result.map((a) => a.total_revenue)
+                : [];
+            const labels = isArray(result)
+                ? result.map((a) => a.month_name)
+                : [];
+
+            const data = {
+                labels: labels.length ? labels : ["Apr", "MAY", "JUNE", "JULY"],
+                datasets: [
+                    {
+                        label: "Current Year",
+                        data: values.length ? values : [12, 12, 12, 12],
+                        fill: true,
+                        borderColor: "#000080",
+                        backgroundColor: "rgba(0,0,128,0.3)",
+                        tension: 0.3,
+                    },
+                ],
+            };
+            setRevenue(data);
+        }
+        getData();
+    }, []);
+    if (!revenue) return <div>Loading...</div>;
     return (
         <div className=" w-full drop-shadow-md drop-shadow-black rounded-md bg-background">
-            <Line options={options} data={data} />
+            <Line options={options} data={revenue} />
         </div>
     );
 };

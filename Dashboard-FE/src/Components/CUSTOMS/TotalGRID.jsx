@@ -88,7 +88,7 @@ const TotalGRID = () => {
             <div className="pie flex justify-center ">
                 <PIE fee={totalObject.Fee} />
             </div>
-            <div className="revContainer flex justify-center">
+            <div className=" grow revContainer flex justify-center">
                 <Reveneu />
             </div>
         </div>
