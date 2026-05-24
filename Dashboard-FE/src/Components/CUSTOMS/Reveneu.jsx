@@ -66,7 +66,12 @@ const Reveneu = () => {
         }
         getData();
     }, []);
-    if (!revenue) return <div>Loading...</div>;
+    if (!revenue)
+        return (
+            <div className=" w-full flex justify-center items-center drop-shadow-md drop-shadow-black rounded-md bg-background">
+                <h1 className="text-2xl font-bold">...</h1>
+            </div>
+        );
     return (
         <div className=" w-full drop-shadow-md drop-shadow-black rounded-md bg-background">
             <Line options={options} data={revenue} />

@@ -7,17 +7,6 @@ import CARD from "./CARD";
 import PIE from "./PIE.jsx";
 import Reveneu from "./Reveneu.jsx";
 
-const formatPKR = (value) => {
-    const num = Number(value);
-    if (Number.isNaN(num)) return "0 PKR";
-
-    return new Intl.NumberFormat("en-PK", {
-        style: "currency",
-        currency: "PKR",
-        maximumSignificantDigits: 5,
-    }).format(num);
-};
-
 const TotalGRID = () => {
     const [totalObject, setTotalObject] = useState({
         Students: 0,
@@ -64,23 +53,40 @@ const TotalGRID = () => {
                 />
                 <CARD
                     totalName={"Unpaid Dues"}
-                    totalCount={formatPKR(totalObject.Fee.total_unpaid_fees)}
+                    totalCount={
+                        new Intl.NumberFormat("en-PK", {
+                            style: "currency",
+                            currency: "PKR",
+                            maximumSignificantDigits: 3,
+                        }).format(totalObject.Fee.total_unpaid_fees) + " PKR"
+                    }
                 />
 
                 <CARD
                     totalName={"Fee Collected"}
-                    totalCount={formatPKR(totalObject.Fee.total_paid_fees)}
+                    totalCount={
+                        new Intl.NumberFormat("en-PK", {
+                            style: "currency",
+                            currency: "PKR",
+                            maximumSignificantDigits: 5,
+                        }).format(totalObject.Fee.total_paid_fees) + " PKR"
+                    }
                 />
 
                 <CARD
                     totalName={"Fee Collected"}
-                    totalCount={formatPKR(
-                        totalObject.Fee.annual_charges_charges,
-                    )}
+                    totalCount={
+                        new Intl.NumberFormat("en-PK", {
+                            style: "currency",
+                            currency: "PKR",
+                            maximumSignificantDigits: 5,
+                        }).format(totalObject.Fee.annual_charges_charges) +
+                        " PKR"
+                    }
                 />
             </div>
             <div className="pie flex justify-center ">
-                <PIE fee={totalObject.Fee || undefined} />
+                <PIE fee={totalObject.Fee} />
             </div>
             <div className=" grow revContainer flex justify-center">
                 <Reveneu />

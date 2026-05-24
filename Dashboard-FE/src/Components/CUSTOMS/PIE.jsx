@@ -4,13 +4,13 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PIE = ({ fee }) => {
-    console.log(Object.values(fee).splice(1, 5));
+    const feeArray = Object.values(fee).splice(1, 5);
     const data = {
         labels: ["tuition", "annual", "annual", "admission", "paid", "unpaid"],
         datasets: [
             {
                 label: "FEE",
-                data: Object.values(fee).splice(1, 5),
+                data: feeArray,
                 backgroundColor: [
                     "#0090FF",
                     "#6EC2FF",
@@ -31,6 +31,13 @@ const PIE = ({ fee }) => {
             },
         ],
     };
+
+    if (feeArray.length <= 0)
+        return (
+            <div className="p-5 w-96 flex justify-center items-center drop-shadow-md drop-shadow-black rounded-md bg-background">
+                <h1 className="text-2xl font-bold">...</h1>
+            </div>
+        );
 
     return (
         <div className="w-fit h-fit drop-shadow-md drop-shadow-black rounded-md bg-background">
