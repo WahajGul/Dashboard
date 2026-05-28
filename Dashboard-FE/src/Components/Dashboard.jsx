@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 const Dashboard = () => {
     return (
-        <div className="flex flex-col h-screen bg-background ">
+        <div className="flex flex-col h-screen bg-slate-200 ">
             <NavBar />
 
             <Outlet />

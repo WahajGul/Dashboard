@@ -4,7 +4,7 @@ import LINK from "./CUSTOMS/LINK";
 const NavBar = () => {
     return (
         <header className="bg-linear-to-r from-blue-600 to-blue-800 text-white shadow-lg">
-            <div className="max-w-8xl mx-auto border-2 border-black  px-6 py-4">
+            <div className="max-w-8xl mx-auto   px-6 py-4">
                 <div className="flex   justify-between items-center">
                     <div className="flex items-center gap-3">
                         <Building2 size={32} />

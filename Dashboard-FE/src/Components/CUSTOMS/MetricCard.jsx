@@ -1,7 +1,7 @@
 import { TrendingUp } from "lucide-react";
 const MetricCard = ({ title, value, change, icon, color }) => (
     <div
-        className="bg-white rounded-xl shadow-md p-6 border-l-4"
+        className="bg-white  shadow-md p-6 border-l-4"
         style={{ borderColor: color }}
     >
         <div className="flex justify-between items-start">
