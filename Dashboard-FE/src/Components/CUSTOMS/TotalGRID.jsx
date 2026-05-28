@@ -48,7 +48,7 @@ const TotalGRID = () => {
         fetchData();
     }, []);
     return (
-        <div className="totalGrid h-fit  *:m-2 flex border-2   justify-center ">
+        <div className="totalGrid h-fit p-2 *:m-2 flex border-2   justify-center ">
             <div className="cardContainer grid grid-cols-3  gap-3 p-2 mx-2">
                 <CARD
                     totalName={"Total Students"}

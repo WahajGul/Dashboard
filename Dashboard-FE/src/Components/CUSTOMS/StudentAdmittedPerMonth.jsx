@@ -17,8 +17,8 @@ ChartJS.register(
     Tooltip,
     Legend,
 );
-
 const options = {
+    indexAxis: "y",
     responsive: true,
     plugins: {
         legend: {
@@ -26,7 +26,7 @@ const options = {
         },
         title: {
             display: true,
-            text: "Employees Hired Per Month",
+            text: "Students Admitted Per Month",
         },
     },
 };
@@ -51,22 +51,18 @@ const data = {
     datasets: [
         {
             label: "in 2025",
-            data: [20, 29, 18, 28, 30, 65, 20, 29, 18, 28, 30, 56],
-            backgroundColor: "rgba(11, 155 ,244,0.3)",
-        },
-        {
-            label: "in 2024",
-            data: [10, 9, 8, 8, 0, 12, 0, 9, 8, 2, 3, 12],
-            backgroundColor: "rgba(7, 99, 156,0.8)",
+            data: [12, 15, 18, 21, 16, 10, 20, 21, 18, 22, 18, 17],
+            backgroundColor: "#0B9BF4",
         },
     ],
 };
-const EmployeeHiredPerMonth = () => {
+
+const StudentAdmittedPerMonth = () => {
     return (
-        <div className="col-span-2 drop-shadow-md drop-shadow-black rounded-md bg-background">
+        <div className=" col-span-1 drop-shadow-md drop-shadow-black rounded-md bg-background">
             <Bar options={options} data={data} />
         </div>
     );
 };
 
-export default EmployeeHiredPerMonth;
+export default StudentAdmittedPerMonth;
