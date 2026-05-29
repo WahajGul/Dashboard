@@ -1,11 +1,13 @@
+import Student_TOP_MATRIX from "./Student_TOP_MATRIX";
+import Student_Visual_Row from "./Student_Visual_Row";
+
 const Students = () => {
-    return (
-        <div className="flex relative flex-col p-4 items-center  w-screen bg-blue-50">
-            <h1 className=" text-blue-500 text-2xl drop-shadow-md drop-shadow-black font-extrabold bg-blue-100 p-5 rounded-2xl">
-                STUDENTS PAGE
-            </h1>
-        </div>
-    );
+  return (
+    <div className="flex-1 space-y-6 overflow-auto p-6">
+      <Student_TOP_MATRIX />
+      <Student_Visual_Row />
+    </div>
+  );
 };
 
 export default Students;
