@@ -8,6 +8,15 @@ import {
     ShieldCheck,
     Users,
 } from "lucide-react";
+
+function formatPKR(value) {
+    const t = new Intl.NumberFormat("en-PK", {
+        maximumFractionDigits: 0,
+        style: "currency",
+        currency: "PKR",
+    }).format(value);
+    return t;
+}
 const EmployeeMetric = () => {
     const [metricData, setMetricData] = useState([
         {
@@ -50,40 +59,44 @@ const EmployeeMetric = () => {
             change: 8,
             icon: <BadgeDollarSign size={24} className="text-primary" />,
             color: "#3b82f6",
-            key: "active",
+            key: "avg",
         },
     ]);
     useEffect(() => {
         async function getData() {
             try {
                 const data = await getEmployeeDetails();
-                setMetricData((data) =>
-                    data.map((metric) => {
+                const res = data[0];
+                setMetricData((dataA) =>
+                    dataA.map((metric) => {
                         switch (metric.key) {
-                            case "students":
+                            case "total":
                                 return {
                                     ...metric,
-                                    value: result?.total_students || 0,
+                                    value: res?.total_employees || 0,
                                 };
-                            case "males":
+                            case "max_sal":
                                 return {
                                     ...metric,
-                                    value: result?.total_male_students || 0,
-                                };
-                            case "females":
-                                return {
-                                    ...metric,
-                                    value: result?.total_female_students || 0,
+                                    value: formatPKR(res?.max_salary) || 0,
                                 };
                             case "active":
                                 return {
                                     ...metric,
-                                    value: active || 0,
+                                    value: res?.active_employees || 0,
+                                };
+                            case "avg":
+                                return {
+                                    ...metric,
+                                    value:
+                                        formatPKR(
+                                            Math.round(res?.average_salary),
+                                        ) || 0,
                                 };
                             case "inactive":
                                 return {
                                     ...metric,
-                                    value: result?.total_inactive_students || 0,
+                                    value: res?.total_inactive || 0,
                                 };
                             default:
                                 return metric;
@@ -94,6 +107,7 @@ const EmployeeMetric = () => {
                 console.error("err occured in emoloyee metric", err);
             }
         }
+        getData();
     }, []);
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2">
