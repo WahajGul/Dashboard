@@ -2,6 +2,24 @@ import { Building2, Search, Bell, Settings, Home } from "lucide-react";
 import LINK from "./CUSTOMS/LINK";
 
 const NavBar = () => {
+    const routes = [
+        {
+            path: "/",
+            text: "HOME",
+        },
+        {
+            path: "/students",
+            text: "Students",
+        },
+        {
+            path: "/employees",
+            text: "Employee",
+        },
+        {
+            path: "/revenue",
+            text: "Revenue",
+        },
+    ];
     return (
         <header className="bg-linear-to-r from-blue-600 to-blue-800 text-white shadow-lg">
             <div className="max-w-8xl mx-auto   px-6 py-4">
@@ -19,18 +37,11 @@ const NavBar = () => {
                     </div>
                     <div className="flex items-center gap-4">
                         <ul className="flex p-2 justify-center  text-background gap-3 *:text-xl ">
-                            <li className="">
-                                <LINK to="/">HOME</LINK>
-                            </li>
-                            <li>
-                                <LINK to="/students">STUDENTS</LINK>
-                            </li>
-                            <li>
-                                <LINK to="/employee">TEACHERS</LINK>
-                            </li>
-                            <li>
-                                <LINK to="reveneu">REVENEU</LINK>
-                            </li>
+                            {routes.map((r) => (
+                                <li className="">
+                                    <LINK to={r.path}>{r.text}</LINK>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
